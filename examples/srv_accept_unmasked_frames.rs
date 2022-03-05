@@ -32,6 +32,8 @@ fn main() {
                 // rare cases where it is necessary to integrate with existing/legacy
                 // clients which are sending unmasked frames
                 accept_unmasked_frames: true,
+                #[cfg(feature = "deflate")]
+                compression: None,
                 ..<_>::default()
             });
 
