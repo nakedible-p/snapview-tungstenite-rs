@@ -331,6 +331,18 @@ pub struct DeflateContext {
 }
 
 impl DeflateContext {
+    #[cfg(not(feature = "deflate-opt"))]
+    fn new(role: Role, config: DeflateConfig) -> Self {
+        DeflateContext {
+            role,
+            config,
+            compressor: Compress::new(config.compression, false),
+            decompressor: Decompress::new(false),
+        }
+    }
+
+
+    #[cfg(feature = "deflate-opt")]
     fn new(role: Role, config: DeflateConfig) -> Self {
         DeflateContext {
             role,

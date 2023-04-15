@@ -26,6 +26,7 @@ rustls-tls-native-roots = ["__rustls-tls", "rustls-native-certs"]
 rustls-tls-webpki-roots = ["__rustls-tls", "webpki-roots"]
 __rustls-tls = ["rustls", "rustls-pki-types"]
 deflate = ["flate2"]
+deflate-opt = ["deflate", "flate2/cloudflare_zlib"]
 
 [dependencies]
 data-encoding = { version = "2", optional = true }
@@ -44,7 +45,6 @@ headers = { git = "https://github.com/nakedible-p/hyperium-headers", branch = "d
 [dependencies.flate2]
 optional = true
 version = "1.0"
-features = ["cloudflare_zlib"]
 
 [dependencies.native-tls-crate]
 optional = true
