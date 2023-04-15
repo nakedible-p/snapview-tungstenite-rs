@@ -335,8 +335,8 @@ impl DeflateContext {
         DeflateContext {
             role,
             config,
-            compressor: Compress::new(config.compression, false),
-            decompressor: Decompress::new(false),
+            compressor: Compress::new_with_window_bits(config.compression, false, 10),
+            decompressor: Decompress::new_with_window_bits(false, 15),
         }
     }
 
