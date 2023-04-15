@@ -44,6 +44,7 @@ headers = { git = "https://github.com/nakedible-p/hyperium-headers", branch = "d
 [dependencies.flate2]
 optional = true
 version = "1.0"
+features = ["cloudflare_zlib"]
 
 [dependencies.native-tls-crate]
 optional = true
