@@ -331,24 +331,25 @@ pub struct DeflateContext {
 }
 
 impl DeflateContext {
-    #[cfg(not(feature = "deflate-opt"))]
     fn new(role: Role, config: DeflateConfig) -> Self {
-        DeflateContext {
-            role,
-            config,
-            compressor: Compress::new(config.compression, false),
-            decompressor: Decompress::new(false),
+        #[cfg(not(feature = "deflate-opt"))]
+        {
+            DeflateContext {
+                role,
+                config,
+                compressor: Compress::new(config.compression, false),
+                decompressor: Decompress::new(false),
+            }
         }
-    }
 
-
-    #[cfg(feature = "deflate-opt")]
-    fn new(role: Role, config: DeflateConfig) -> Self {
-        DeflateContext {
-            role,
-            config,
-            compressor: Compress::new_with_window_bits(config.compression, false, 10),
-            decompressor: Decompress::new_with_window_bits(false, 15),
+        #[cfg(feature = "deflate-opt")]
+        {
+            DeflateContext {
+                role,
+                config,
+                compressor: Compress::new_with_window_bits(config.compression, false, 10),
+                decompressor: Decompress::new_with_window_bits(false, 15),
+            }    
         }
     }
 
